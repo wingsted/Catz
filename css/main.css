@@ -1,0 +1,9 @@
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 35px;
+  color: black;
+}
