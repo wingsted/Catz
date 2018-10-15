@@ -1,3 +1,5 @@
 # Catz
 
-What up
+What up Catz!
+
+By awesome people
