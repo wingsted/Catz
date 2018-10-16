@@ -55,6 +55,7 @@ class Comment {
   
   var loginContainer = document.getElementById("login");
   var submitBtn = document.getElementById('submit');
+  var createBtn = document.getElementById('create');
   var usernameField = document.getElementById('username');
   var passwordField = document.getElementById('password');
   
@@ -72,6 +73,9 @@ class Comment {
     alert('You have entered a wrong username/password.');
   };
   
+  createBtn.onclick = function() {
+      var 
+  }
   submitBtn.onclick = function() {
     console.log("Button is clicked");
   
