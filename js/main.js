@@ -24,7 +24,7 @@ class User {
         return this.firstName + " " + this.lastName
     }
 
-};      
+};
 
 class Post {
     constructor(owner, imageURL, title, body, comments, likes) {
@@ -51,9 +51,9 @@ class Comment {
     }
 };
 
-  
+
   // HTML reference values
-  
+
   var loginContainer = document.getElementById("login");
   var submitBtn = document.getElementById('submit');
   var usernameField = document.getElementById('username');
@@ -67,47 +67,48 @@ class Comment {
   var createEmail = document.getElementById('email');
 
   // Database
-  
+
   var db = {
     thomasW: new User("thomasW", "Thomas", "Wingsted", "123", "w@w.com", "URL"),
     thomasU: new User("thomasU", "Thomas", "Wingsted", "123", "w@w.com", "URL")
   };
   console.log("Current user database is:", db);
-  
+
   // Helper methods
-  
+
   function showWrongUserPass() {
     alert('You have entered a wrong username/password.');
   };
-  
+
   createBtn.onclick = function() {
-     var user = new User(createBtn.value, createUser.value, createPass.value, createFirst.value, createSur.value, createEmail.value);
-      alert('User has been created!');
-      db.push(user);
+    var user = new User(createUser.value, createUser.value, createPass.value, createFirst.value, createSur.value, createEmail.value);
+    alert('User has been created!');
+    db[user.userName] = user
+    console.log("User was inserted into the database.")
+    console.log("Current user database is:", db);
   };
 
   submitBtn.onclick = function() {
     console.log("Button is clicked");
-  
+
     var username = usernameField.value;
     console.log("User did enter username:", username);
-  
+
     var user = db[username];
     console.log("Lookup in database did find:", user);
-  
+
     var password = passwordField.value;
     console.log("User did enter password:", password);
-  
+
     if (user === undefined) {
       showWrongUserPass();
       return;
     };
-  
+
     if (password !== user.password) {
-      showWrongUserPass();  
+      showWrongUserPass();
       return;
     }
-    
+
     console.log('You are now logged in!');
   };
-  
