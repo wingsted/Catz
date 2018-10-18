@@ -10,7 +10,8 @@
 
  //User class
 class User {
-    constructor(firstName, lastName, password, email, profileImageURL) {
+    constructor(userName, firstName, lastName, password, email, profileImageURL) {
+        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -55,10 +56,16 @@ class Comment {
   
   var loginContainer = document.getElementById("login");
   var submitBtn = document.getElementById('submit');
-  var createBtn = document.getElementById('create');
   var usernameField = document.getElementById('username');
   var passwordField = document.getElementById('password');
-  
+
+  var createBtn = document.getElementById('createBtn');
+  var createUser = document.getElementById('createUsername');
+  var createPass = document.getElementById('createPassword');
+  var createFirst = document.getElementById('firstname');
+  var createSur = document.getElementById('surname');
+  var createEmail = document.getElementById('email');
+
   // Database
   
   var db = {
@@ -74,8 +81,10 @@ class Comment {
   };
   
   createBtn.onclick = function() {
-      var 
-  }
+     
+      alert('User has been created!');
+  };
+
   submitBtn.onclick = function() {
     console.log("Button is clicked");
   
