@@ -69,8 +69,8 @@ class Comment {
   // Database
   
   var db = {
-    thomasW: new User("Thomas", "Wingsted", "123", "w@w.com", "URL"),
-    thomasU: new User("Thomas", "Wingsted", "123", "w@w.com", "URL")
+    thomasW: new User("thomasW", "Thomas", "Wingsted", "123", "w@w.com", "URL"),
+    thomasU: new User("thomasU", "Thomas", "Wingsted", "123", "w@w.com", "URL")
   };
   console.log("Current user database is:", db);
   
@@ -81,8 +81,9 @@ class Comment {
   };
   
   createBtn.onclick = function() {
-     
+     var user = new User(createBtn.value, createUser.value, createPass.value, createFirst.value, createSur.value, createEmail.value);
       alert('User has been created!');
+      db.push(user);
   };
 
   submitBtn.onclick = function() {
