@@ -19,7 +19,7 @@ submitBtn.onclick = function() {
     var username = usernameField.value;
     console.log("User did enter username:", username);
 
-    var user = db[username];
+    var user = db.users[username];
     console.log("Lookup in database did find:", user);
 
     var password = passwordField.value;
@@ -36,4 +36,5 @@ submitBtn.onclick = function() {
     }
 
     console.log('You are now logged in!');
+    window.location = "feed.html";
 };

@@ -12,7 +12,9 @@ var createEmail = document.getElementById('email');
 createBtn.onclick = function() {
     var user = new User(createUser.value, createUser.value, createPass.value, createFirst.value, createSur.value, createEmail.value);
     alert('User has been created!');
-    db[user.userName] = user
+    db.users[user.userName] = user
+
     console.log("User was inserted into the database.")
     console.log("Current user database is:", db);
+    window.location = "feed.html";
 };
