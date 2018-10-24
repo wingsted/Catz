@@ -3,7 +3,11 @@ body {
 }
 
 .logo {
-  font-weight: 900;
-  font-size: 35px;
-  color: black;
+    font-weight: 900;
+    font-size: 35px;
+    color: black;
+}
+
+.gray-bg {
+    background-color: #fafafa;
 }
