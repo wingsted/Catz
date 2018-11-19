@@ -1,0 +1,28 @@
+{
+  "name": "catz",
+  "version": "1.0.0",
+  "description": "Cat lovers paradise",
+  "main": "app.js",
+  "scripts": {
+    "nodemon": "nodemon",
+    "start": "node ./app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wingsted/Catz.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wingsted/Catz/issues"
+  },
+  "homepage": "https://github.com/wingsted/Catz#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  }
+}
