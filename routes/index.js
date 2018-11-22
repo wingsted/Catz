@@ -7,12 +7,17 @@ var User = require('../models/user');
 
 // get the index (home) page
 router.get('/', function(req, res, next) {
-  return res.render('index');
+    return res.render('index');
 });
 
 // get the sign up page
 router.get('/signup', function(req, res, next) {
-  return res.render('signup');
+    // if the user is already signed in, redirect to /feed
+    // FIXME
+
+    // else render sign up page
+    var error = req.query.error
+    return res.render('signup', { error: error });
 });
 
 // post the sign up data and handle
@@ -44,7 +49,11 @@ router.post('/signup', function(req, res, next) {
 
 // get the sign in page
 router.get('/signin', function(req, res, next) {
-  return res.render('signin');
+    // if the user is already signed in, redirect to /feed
+    // FIXME
+
+    // else render sign in page
+    return res.render('signin');
 });
 
 // post the sign in data and handle
