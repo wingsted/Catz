@@ -1,0 +1,18 @@
+extends layout
+
+block content
+	body
+		.container-fluid
+			#create.container
+				h1.createHeader.py-5 Registration for Catz
+				form(method='post' action='/posts' enctype="multipart/form-data")
+					div.form-group
+						label(for='title') Post title
+						input#title.form-control(type='text', placeholder='Title of the post' name='title' required)
+					div.form-group
+						label(for='body') Post description
+						input#body.form-control(type='text', placeholder='Description of the post' name='body')
+					div.form-group
+						label(for='imageInput') Post image
+						input#imageInput.form-control-file(type='file', name='file', required)
+					button.btn.btn-primary(type='submit') Create

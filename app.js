@@ -7,7 +7,7 @@
 // GET      /feed           -> get the feed page
 // GET      /feed/ID        -> get single post page
 // POST     /signout        -> signout the user and destroy session
-// GET      /new-post       -> get the create new post form
+// GET      /new            -> get the create new post form
 // GET      /posts          -> get posts from db
 // POST     /posts          -> create a new post
 // GET      /posts/ID       -> get specific post
@@ -34,6 +34,8 @@ var indexRoutes = require('./routes/index');
 app.use('/', indexRoutes);
 var feedRoutes = require('./routes/feed');
 app.use('/feed', feedRoutes);
+var postRoutes = require('./routes/posts');
+app.use('/posts', postRoutes);
 
 // listen on port 8080
 app.listen(8080, function () {

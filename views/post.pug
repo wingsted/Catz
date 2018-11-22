@@ -1,0 +1,23 @@
+extends layout
+
+block content
+	body
+		.contaier-fluid.gray-bg.pt-5.fill-height
+			.container
+				.row.justify-content-center
+					#postsContainer.col-6.mx-auto
+						a.btn.btn-primary(href='/feed') Go back to feed
+						.card.mt-2.mb-5
+							- var url = imageURL;
+							img.card-img-top(src=url)
+							.card-body
+								h4.card-title #{title}
+								p.card-text 
+									b Created by #{userName}
+								p.card-text #{body}
+								p.card-text Likes: #{likes}
+								ul
+									each val in comments
+										li= val
+									else
+										li There are no comments

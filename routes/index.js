@@ -7,6 +7,10 @@ var User = require('../models/user');
 
 // get the index (home) page
 router.get('/', function(req, res, next) {
+    // if the user is already signed in, redirect to /feed
+    // FIXME
+
+    // else render home page
     return res.render('index');
 });
 

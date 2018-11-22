@@ -1,5 +1,6 @@
 class Post {
     constructor(owner, imageURL, title, body, comments, likes) {
+        this.id = 'id'
         this.owner = owner;
         this.imageURL = imageURL;
         this.title = title;
@@ -8,3 +9,5 @@ class Post {
         this.likes = likes;
     }
 };
+
+module.exports = Post;

@@ -2,17 +2,12 @@ extends layout
 
 block content
 	body
-		.contaier-fluid.gray-bg
-			.container.mt-5
+		.contaier-fluid.gray-bg.pt-5
+			#alert.alert.alert-danger(role='alert', style='display: none;')
+				| Could not load posts. Please try agiain.
+			.container
 				.row.justify-content-center
 					#postsContainer.col-6
-						.card.mb-4
-						img.card-img-top(src='img/homeCover.png')
-						.card-body
-							h5.card-title Post title
-							p.card-text Post body
-							a.btn.btn-primary(href='#') Go somewhere
-
 					.col-3.d-none.d-lg-block
 						.position-fixed
 							.card
@@ -23,19 +18,6 @@ block content
 											li Epic cat social media
 											li Privacy is non exsiting
 											li We love catz
-										p Links to epicness:
-										ul
-											li Profile
-											li Search
-									a.btn.btn-primary(href='#') Upload photo
-	// Optional JavaScript
-	// jQuery first, then Popper.js, then Bootstrap JS
-	script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
-	script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49', crossorigin='anonymous')
-	script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', integrity='sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy', crossorigin='anonymous')
-	script(src='js/models/user.js')
-	script(src='js/models/like.js')
-	script(src='js/models/post.js')
-	script(src='js/models/comment.js')
-	script(src='js/database.js')
-	script(src='js/feed.js')
+									a.btn.btn-primary(href='/feed/new') Upload photo
+	//- load frontend javascript 
+	script(src='/js/frontendFeed.js')
