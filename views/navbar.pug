@@ -1,0 +1,17 @@
+nav.navbar.sticky-top.navbar-light.navbar-expand-md.bg-white.shadow-sm
+    .container
+        a.navbar-brand.logo(href='/')
+            img.d-inline-block.align-top(src='/img/Logo.svg', alt='Logo', width='100', height='50')
+            | Catz
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+            ul.navbar-nav.ml-auto
+                if !userID
+                    li.nav-item.pr-4
+                        a.nav-link(href='/signin') Sign in
+                    li.nav-item
+                        a.btn.btn-primary(href='/signup') Get Started Today!
+                if userID
+                    li.nav-item
+                        a.nav-link(href='/signout') Sign out

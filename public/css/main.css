@@ -1,0 +1,19 @@
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 35px;
+    color: black;
+}
+
+.gray-bg {
+    background-color: #fafafa;
+}
+
+.fill-height {
+    min-height: 100%;
+    height:auto !important; /* cross-browser */
+    height: 100%; /* cross-browser */
+}

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+	body
+		.contaier-fluid.gray-bg.pt-5
+			#alert.alert.alert-danger(role='alert', style='display: none;')
+				| Could not load posts. Please reload the page.
+			.container
+				.row.justify-content-center
+					#postsContainer.col-6
+						each post in posts
+							.card.mb-4.shadow-sm
+								img.card-img.top(src=post.imageURL)
+								.card-body
+									h4.card-title #{post.title}
+									p.card-text #{post.body}
+								.card-footer.text-muted.bg-white
+									| Likes: #{post.likes} <br> Created at: #{post.createdAt}
+								a(href="/feed/" + post.id)
+									button.btn.btn-secondary.my-3.ml-4 See More
+						else
+							.h1 There are no posts
+					.col-3.d-none.d-lg-block
+						.position-fixed
+							.card
+								.card-body.shadow-sm
+									h5.card-title Catz
+									.card-text
+										ul
+											li Epic cat social media
+											li Privacy is non exsiting
+											li We love catz
+									a.btn.btn-primary(href='/feed/new') Upload photo
