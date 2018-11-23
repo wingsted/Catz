@@ -7,12 +7,12 @@ var UserSchema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
-        required: true,        
+        required: true,
     },
     username: {
         type: String,
         unique: true,
-        required: true,      
+        required: true,
     },
     password: {
         type: String,
@@ -21,7 +21,7 @@ var UserSchema = new mongoose.Schema({
     firstname: {
         type: String,
         required: true,
-        
+
     },
     lastname: {
         type: String,
@@ -32,26 +32,26 @@ var UserSchema = new mongoose.Schema({
 //authenticate user input to databse (username and password)
 UserSchema.statics.authenticate = function(username, password, callback) {
     User.findOne({ username: username })
-        .exec(function (error, user) {
-          if (error) {
+    .exec(function (error, user) {
+        if (error) {
             return callback(error);
-          } else if ( !user ) {
+        } else if ( !user ) {
             var err = new Error('User not found.');
             err.status = 401;
             return callback(err);
-          }
-          bcrypt.compare(password, user.password , function(error, result) {
+        }
+        bcrypt.compare(password, user.password , function(error, result) {
             if (result === true) {
-              return callback(null, user);
+                return callback(null, user);
             } else {
-              return callback();
+                return callback();
             }
-          })
-        });
-  }
+        })
+    });
+}
 
 // hash password before saving to database.
-//We do this by using the 'pre' method, which runs the following function just before saving to DB (pre saves it)
+// We do this by using the 'pre' method, which runs the following function just before saving to DB (pre saves it)
 UserSchema.pre('save', function(next) {
     //using 'this' binds the user variable to the current user.
     var user = this;
@@ -64,5 +64,6 @@ UserSchema.pre('save', function(next) {
         next();
     })
 });
+
 var User = mongoose.model('User', UserSchema);
 module.exports = User;

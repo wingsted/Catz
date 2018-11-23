@@ -1,14 +1,16 @@
 // import dependencies
 var express = require('express');
 var router = express.Router();
+
 // import models
 var User = require('../models/user');
-
 
 // get the index (home) page
 router.get('/', function(req, res, next) {
     // if the user is already signed in, redirect to /feed
-    // FIXME
+    if (req.session && req.session.userID) {
+        return res.redirect('/feed');
+    };
 
     // else render home page
     return res.render('index');
@@ -17,7 +19,9 @@ router.get('/', function(req, res, next) {
 // get the sign up page
 router.get('/signup', function(req, res, next) {
     // if the user is already signed in, redirect to /feed
-    // FIXME
+    if (req.session && req.session.userID) {
+        return res.redirect('/feed');
+    };
 
     // else render sign up page
     return res.render('signup');
@@ -52,7 +56,7 @@ router.post('/signup', function(req, res, next) {
                 return next(error);
             } else {
                 // following line of code logs in the user at the same time of creation.
-                req.session.userId = user._id;
+                req.session.userID = user._id;
                 // go to user area (feed)
                 return res.redirect('feed');
             }
@@ -65,7 +69,9 @@ router.post('/signup', function(req, res, next) {
 // get the sign in page
 router.get('/signin', function(req, res, next) {
     // if the user is already signed in, redirect to /feed
-    // FIXME
+    if (req.session && req.session.userID) {
+        return res.redirect('/feed');
+    };
 
     // else render sign in page
     return res.render('signin');
@@ -85,11 +91,11 @@ router.post('/signin', function(req, res, next) {
                 err.status = 401;
                 return next(err);
             } else {
-                //If we reach this point the user input is authenticated, and we give the user a session ID and saves it to the user ID ( _id is created in MongoDB)..
-                //we create a property (userId), and sets its value. Then we tell Express add the property of the session or create new session if it doesnt exist.
-                req.session.userId = user._id;
+                // If we reach this point the user input is authenticated, and we give the user a session ID and saves it to the user ID ( _id is created in MongoDB)..
+                // we create a property (userId), and sets its value. Then we tell Express add the property of the session or create new session if it doesnt exist.
+                req.session.userID = user._id;
                 // go to user area (feed), since the user is succesfully logged in at this point.
-                return res.redirect('feed');
+                return res.redirect('/feed');
             }
         });
     } else {
@@ -97,6 +103,21 @@ router.post('/signin', function(req, res, next) {
         err.status = 401;
         return next(err);
     }
+});
+
+// sign the user out, and redirect to index
+router.get('/signout', function(req, res, next) {
+    // destroy the session
+    req.session.destroy(function(err) {
+
+        // if there is an error, handle
+        if (err) {
+            return next(err);
+        } else {
+            // return to index
+            return res.redirect('/');
+        }
+    });
 });
 
 module.exports = router;

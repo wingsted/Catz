@@ -8,30 +8,37 @@
 // GET      /feed/ID        -> get single post page
 // POST     /signout        -> signout the user and destroy session
 // GET      /new            -> get the create new post form
-// GET      /posts          -> get posts from db
 // POST     /posts          -> create a new post
-// GET      /posts/ID       -> get specific post
 // POST     /posts/ID/like  -> like a post
+
+// start mongodb in docker: docker run --name mongodb bitnami/mongodb:latest -p 5432:5432 -d mongodb
 
 // import dependencies
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var app = express();
 
-//Use express-session module
+// connect to MongoDB
+mongoose.connect("mongodb://localhost:27017/catzdb", { useNewUrlParser: true, useCreateIndex: true });
+
+// add express-session module
 app.use(session({
   secret: 'Catz',
   resave: true,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new MongoStore({
+      mongooseConnection: mongoose.connection
+  })
 }));
 
-//mongoDB connection
-mongoose.connect("mongodb://localhost:27017/catzdb", { useNewUrlParser: true, useCreateIndex: true });
-
-
-
+// make sure we can access to user id in the pug templates
+app.use(function(req, res, next) {
+    res.locals.userID = req.session.userID;
+    next();
+});
 
 // serve static files from /public
 app.use(express.static(__dirname + '/public'));
@@ -59,8 +66,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handler
-// define as the last app.use callback
+// catch all errors and show error page
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
@@ -69,7 +75,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-// listen on port 8080
-app.listen(8080, function () {
-  console.log('Express app listening on port 8080');
+// start listen on port 3000
+app.listen(3000, function () {
+  console.log('Express app listening on port 3000');
 });

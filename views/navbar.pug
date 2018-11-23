@@ -7,7 +7,11 @@ nav.navbar.sticky-top.navbar-light.navbar-expand-md.bg-white.shadow-sm
             span.navbar-toggler-icon
         #navbarSupportedContent.collapse.navbar-collapse
             ul.navbar-nav.ml-auto
-                li.nav-item.pr-4
-                    a.nav-link(href='/signin') Login
-                li.nav-item
-                    a.btn.btn-primary(href='/signup') Get Started Today!
+                if !userID
+                    li.nav-item.pr-4
+                        a.nav-link(href='/signin') Sign in
+                    li.nav-item
+                        a.btn.btn-primary(href='/signup') Get Started Today!
+                if userID
+                    li.nav-item
+                        a.nav-link(href='/signout') Sign out
