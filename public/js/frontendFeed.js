@@ -5,8 +5,8 @@ var alert = $("#alert");
 // create post in memory variable
 var posts = [];
 
+// change to the post endpoint
 function onPostClick(id) {
-    console.log('POST CLICKED: ', id)
     window.location.href = "/feed/" + id;
 }
 
@@ -16,7 +16,7 @@ function renderPosts() {
         var post = posts[i]
 
         var card = document.createElement('div');
-        card.className = "card mb-4";
+        card.className = "card mb-4 shadow-sm";
 
         var image = document.createElement('img');
         image.className = "card-img-top";
@@ -61,11 +61,11 @@ function renderPosts() {
         // create the post button
         var button = document.createElement('button');
         button.className = "btn btn-secondary my-2";
-        button.innerText = "see more"
+        button.innerText = "See More";
         button.onclick = function () {
             onPostClick(post.id);
         };
-        cardFooter.appendChild(button)
+        cardFooter.appendChild(button);
 
         // add cart footer div to card div
         card.appendChild(cardFooter);
@@ -73,6 +73,14 @@ function renderPosts() {
         // add card to post container
         postsContainer.appendChild(card);
     };
+
+    var loadMoreBtn = document.createElement('button');
+    loadMoreBtn.className = "btn btn-info btn-block mb-5 mt-2 shadow";
+    loadMoreBtn.innerText = "Load More Posts"
+    loadMoreBtn.onclick = function () {
+        loadPosts(5);
+    };
+    postsContainer.appendChild(loadMoreBtn);
 };
 
 // helper method for loading posts
