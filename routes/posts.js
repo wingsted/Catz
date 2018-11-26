@@ -40,7 +40,7 @@ router.post('/', upload.single("file"), function(req, res, next) {
 				return next(err);
 			};
 
-			// get the user id from the session
+			// get the user id and username from the session
 			var owner = req.session.userID;
 			var username = req.session.username;
 

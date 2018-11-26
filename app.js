@@ -48,6 +48,8 @@ app.use(function(req, res, next) {
 
 // serve static files from /public
 app.use("/public", express.static(__dirname + '/public'));
+
+// serve uploaded images from /uploads
 app.use("/uploads", express.static(__dirname + '/uploads'));
 
 // parse incoming requests, so we have access to the body
