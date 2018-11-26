@@ -42,11 +42,15 @@ app.use(session({
 // make sure we can access to user id in the pug templates
 app.use(function(req, res, next) {
     res.locals.userID = req.session.userID;
+    res.locals.username = req.session.username;
     next();
 });
 
 // serve static files from /public
-app.use(express.static(__dirname + '/public'));
+app.use("/public", express.static(__dirname + '/public'));
+
+// serve uploaded images from /uploads
+app.use("/uploads", express.static(__dirname + '/uploads'));
 
 // parse incoming requests, so we have access to the body
 app.use(bodyParser.json());
