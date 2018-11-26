@@ -21,8 +21,13 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var app = express();
 
+var MONGODB_URI = "mongodb://localhost:27017/catzdb"
+if (process.env.MONGODB_URI) {
+    MONGODB_URI = process.env.MONGODB_URI;
+};
+
 // connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/catzdb", { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useCreateIndex: true });
 
 // add express-session module
 app.use(session({
@@ -75,7 +80,10 @@ app.use(function(err, req, res, next) {
   });
 });
 
+// check if there is a port in the environment
+const PORT = process.env.PORT || 3000;
+
 // start listen on port 3000
-app.listen(3000, function () {
-  console.log('Express app listening on port 3000');
+app.listen(PORT, function () {
+  console.log('Express app listening on port', PORT);
 });

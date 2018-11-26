@@ -48,7 +48,7 @@ UserSchema.statics.authenticate = function(username, password, callback) {
             }
         })
     });
-}
+};
 
 // hash password before saving to database.
 // We do this by using the 'pre' method, which runs the following function just before saving to DB (pre saves it)

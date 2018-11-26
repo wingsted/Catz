@@ -1,11 +1,15 @@
 {
   "name": "catz",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.13.0"
+  },
   "description": "Cat lovers paradise",
   "main": "app.js",
   "scripts": {
     "nodemon": "nodemon",
-    "start": "node ./app"
+    "start": "node ./app",
+    "docker": "docker-compose up --build"
   },
   "repository": {
     "type": "git",
