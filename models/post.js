@@ -17,7 +17,8 @@ var PostSchema = new mongoose.Schema({
     createdAt: Date,
     body: String,
     comments: [String],
-    likes: Number
+    likes: Number,
+    username: String
 });
 
 var Post = mongoose.model('Post', PostSchema);

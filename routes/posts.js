@@ -12,7 +12,7 @@ var User = require('../models/user');
 var Post = require('../models/post');
 
 // setup multer to upload photo to ./uploads/
-var upload = multer({ dest: "./public/img/uploads" });
+var upload = multer({ dest: "./uploads/" });
 
 // create new post
 router.post('/', upload.single("file"), function(req, res, next) {
@@ -27,7 +27,7 @@ router.post('/', upload.single("file"), function(req, res, next) {
 
 	// set the target file name (path) for the image. It will be in the upload folder,
 	// named after the post id + the extension (e.g. .png or .jpg)
-	const targetPath = "./public/img/uploads/" + id + extension;
+	const targetPath = "./uploads/" + id + extension;
 
 	// check that the extension is either png or jpg
 	if (extension === ".png" || extension === ".jpg") {
@@ -42,15 +42,17 @@ router.post('/', upload.single("file"), function(req, res, next) {
 
 			// get the user id from the session
 			var owner = req.session.userID;
+			var username = req.session.username;
 
 			// get the post input
 			var postInput = {
 				owner: owner,
-				imageURL: "/img/uploads/" + id + extension,
+				imageURL: "/uploads/" + id + extension,
 				title: req.body.title,
 				body: req.body.body,
 				createdAt: new Date(),
-				likes: 0
+				likes: 0,
+				username: username
 			};
 
 			// store the post in the database

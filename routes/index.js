@@ -57,6 +57,7 @@ router.post('/signup', function(req, res, next) {
             } else {
                 // following line of code logs in the user at the same time of creation.
                 req.session.userID = user._id;
+                req.session.username = user.username;
                 // go to user area (feed)
                 return res.redirect('feed');
             }
@@ -94,6 +95,7 @@ router.post('/signin', function(req, res, next) {
                 // If we reach this point the user input is authenticated, and we give the user a session ID and saves it to the user ID ( _id is created in MongoDB)..
                 // we create a property (userId), and sets its value. Then we tell Express add the property of the session or create new session if it doesnt exist.
                 req.session.userID = user._id;
+                req.session.username = user.username;
                 // go to user area (feed), since the user is succesfully logged in at this point.
                 return res.redirect('/feed');
             }
