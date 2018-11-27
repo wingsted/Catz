@@ -21,6 +21,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var app = express();
 
+// get the mongo db URI from the environment, if not set, use default localhost
 var MONGODB_URI = "mongodb://localhost:27017/catzdb"
 if (process.env.MONGODB_URI) {
     MONGODB_URI = process.env.MONGODB_URI;
