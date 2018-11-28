@@ -37,15 +37,8 @@ router.get('/:id', guard.guardMiddleware, function(req, res, next) {
             return next(error);
         }
 
-        // fetch owner from post
-        User.findById(post.owner, function(error, owner) {
-            if (error) {
-                return next(error);
-            }
-
-            // return the post page with the post object
-            return res.render('post', { post: post })
-        });
+        // return the post page with the post object
+        return res.render('post', { post: post })
     });
 });
 
